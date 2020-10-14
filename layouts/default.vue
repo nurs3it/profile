@@ -2,10 +2,11 @@
   <v-app>
     <v-content class="default-layout">
       <v-container class="default-layout__container">
-        <div>
+        <div class="default-layout__container__header">
+          <h2>Нурсеит Шарип</h2>
           <NavbarComponent />
         </div>
-        <div>
+        <div class="default-layout__container__content">
           <nuxt/>
         </div>
       </v-container>
@@ -29,6 +30,9 @@ export default {
 .default-layout {
   &__container {
     max-width: 900px;
+    &__header {
+      margin-bottom: 25px;
+    }
   }
 }
 </style>

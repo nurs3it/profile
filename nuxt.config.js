@@ -29,7 +29,7 @@ export default {
   axios: {
   },
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/variables.scss', '~/assets/reset.scss'],
     theme: {
       dark: false,
       themes: {

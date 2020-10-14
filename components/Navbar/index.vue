@@ -1,16 +1,16 @@
 <template>
   <v-main class="navbar">
     <v-container class="navbar__items">
-      <div class="navbar__items__name">
-        <h3 class="text-h3">Нурсеит Шарип</h3>
-      </div>
-      <div class="navbar__items__menu">
-        <v-tabs>
-          <v-tab class="navbar__items__menu__item" v-for="(menu, index) in menus" :key="`menu-${index}`">
-            <nuxt-link class="navbar__items__menu__link" :to="menu.link">{{ menu.name.ru }}</nuxt-link>
-          </v-tab>
-        </v-tabs>
-      </div>
+      <ul class="navbar__items__menu">
+        <li class="navbar__items__menu__item subtitle-2"
+            :class="{ 'active-route': menu.link === routeName }"
+            v-for="(menu, index) in menus"
+            @click="goto(menu.link)"
+            :key="index"
+        >
+          {{ menu.name.ru }}
+        </li>
+      </ul>
     </v-container>
   </v-main>
 </template>
@@ -25,23 +25,53 @@ export default {
       menus: MenuList
     }
   },
+  computed: {
+    routeName() {
+      return this.$route.path
+    }
+  },
+  methods: {
+    goto(link) {
+      this.$router.push(link)
+    }
+  },
 }
 </script>
 
 <style scoped lang="scss">
-.navbar__items {
-  &__name {
-    margin-bottom: 15px;
-  }
-  &__menu {
-    &__link {
-      width: 100%;
-      height: 100%;
+.navbar {
+  .navbar__items {
+    &__name {
+      margin-bottom: 15px;
     }
-    &__item {
-      padding: 0;
-      width: max-content;
-      min-width: 100px;
+
+    &__menu {
+      &__link {
+        width: 100%;
+        height: 100%;
+      }
+
+      .active-route {
+        border-bottom: 4px solid #ff7c00;
+      }
+
+      &__item {
+        justify-content: center;
+        cursor: pointer;
+        align-items: center;
+        width: max-content;
+        min-width: 100px;
+        padding: 10px;
+        display: flex;
+        float: left;
+        transition: .1s ease-out;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+          background: bisque;
+          border-bottom: 4px solid #ff7c00;
+        }
+      }
     }
   }
 }
